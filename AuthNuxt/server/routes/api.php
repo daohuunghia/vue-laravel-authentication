@@ -24,10 +24,9 @@ use Illuminate\Http\Request;
 //    });
 //});
 Route::middleware(['cors', 'api'])->group(function ($router) {
-    Route::post('login', 'UserController@login');
+    Route::post('login', 'Auth\AuthController@login');
     Route::post('register', 'UserController@register');
-    Route::group(['middleware' => 'auth.jwt'], function() {
-        Route::post('refresh', 'UserController@refresh');
-        Route::get('me', 'UserController@me')->middleware('jwt-verify');
+    Route::group(['middleware' => 'jwt-verify'], function() {
+        Route::get('me', 'Auth\AuthController@me');
     });
 });

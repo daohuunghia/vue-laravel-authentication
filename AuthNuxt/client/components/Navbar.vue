@@ -24,15 +24,25 @@
           </li>
         </ul>
         <ul class="navbar-nav">
-          <li class="nav-item active">
+          <li v-if="!$auth.loggedIn" class="nav-item active">
             <nuxt-link to="/auth/login" class="nav-link" href="#">
               Login <span class="sr-only">(current)</span>
             </nuxt-link>
           </li>
-          <li class="nav-item">
+          <li v-if="!$auth.loggedIn" class="nav-item">
             <nuxt-link to="/auth/register" class="nav-link" href="#">
               Register
             </nuxt-link>
+          </li>
+          <li v-if="$auth.loggedIn" class="nav-item">
+            <a class="nav-link text-info">
+              {{ $auth.user.name }} |
+            </a>
+          </li>
+          <li v-if="$auth.loggedIn" class="nav-item">
+            <a class="nav-link" href="#" @click.prevent="$auth.logout()">
+              Logout
+            </a>
           </li>
         </ul>
       </div>

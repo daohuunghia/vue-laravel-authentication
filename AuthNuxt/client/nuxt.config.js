@@ -60,23 +60,24 @@ export default {
     baseURL: process.env.API_BASE_URL
   },
   auth: {
-    // redirect: {
-    //   callback: '/welcome' // sau khi login sẽ chuyển về đây
-    // },
     strategies: {
       local: {
         endpoints: {
-          login: { url: '/login', method: 'post', propertyName: 'data.token' },
+          login: { url: '/login', method: 'post', propertyName: 'meta.token' },
           user: { url: '/me', method: 'get', propertyName: 'data' },
           logout: false
+        },
+        redirect: {
+          login: '/auth/login'
         }
       }
+    },
+    redirect: {
+      login: '/auth/login',
+      logout: '/auth/login',
+      home: '/'
     }
   },
-  // router: {
-  //   middleware: ['auth']
-  // },
-
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
   }

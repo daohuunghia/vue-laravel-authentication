@@ -1,8 +1,7 @@
 <template>
   <div class="container">
-    {{ $auth.loggedIn }}
     <p v-if="$auth.loggedIn">
-      Hello {{ user.name }}
+      {{ $auth.user.name }}
     </p>
     <p v-if="!$auth.loggedIn">
       Chua dang nhap
@@ -12,5 +11,6 @@
 
 <script>
 export default {
+  middleware: 'auth'
 }
 </script>
